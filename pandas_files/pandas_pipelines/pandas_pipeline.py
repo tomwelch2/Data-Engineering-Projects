@@ -9,7 +9,6 @@ class apiConnector(object):
 		self.key = key
 		self.host = host
 
-
 	@property
 	def set_jsondata(self):
 		'''Pulls data from free API found on rapidapi.com '''
@@ -36,25 +35,27 @@ last_update_dates = df['last_updated'].str.split('T') #removing all but year-mon
 last_update_dates = [i[0] for i in last_update_dates]
 df['last_updated'] = last_update_dates
 df['last_updared'] = pd.to_datetime(df['last_updated']) #converting last_updated column to datetime data-type
-
 df.to_csv('/home/tom/Documents/csv_files/aws_api_data.csv')
-table_descriptions.to_csv('/home/tom/Documents/csv_files/aws_table_descriptions.csv')
+title_descriptions.to_csv('/home/tom/Documents/csv_files/aws_table_descriptions.csv')
 
 with open('/home/tom/AWS_CREDS.txt', 'r') as f:
 	data = f.read() #reading in AWS credentials to connect to S3 bucket
 
 data = data.split(' ') #splitting credentials into secret key and access key
 aws_access_key_id = data[0]
+aws_access_key_id = aws_access_key_id.strip()
 aws_secret_access_key = data[1]
-
+aws_secret_access_key = aws_secret_access_key.strip()
+print(aws_access_key_id)
 
 s3 = boto3.client(service_name = "s3", #connecting to S3 bucket
 		  aws_access_key_id = aws_access_key_id,
-		  aws_secret_access_key = aws_secret_access_key)
+		  aws_secret_access_key = aws_secret_access_key,
+		  region_name = "eu-west-2")
 
-with open('/home/tom/Documents/csv_files/aws_api_data.csv', 'wb') as f:
+with open('/home/tom/Documents/csv_files/aws_api_data.csv', 'rb') as f:
 	s3.upload_fileobj(f, 'testingbucket1003', 'api_data.csv') #uploading transformed dataframes
-with open('/home/tom/Documents/csv_files/aws_table_descriptions.csv', 'wb') as f:
+with open('/home/tom/Documents/csv_files/aws_table_descriptions.csv', 'rb') as f:
 	s3.upload_fileobj(f, 'testingbucket1003', 'table_descriptions.csv')
 
 
