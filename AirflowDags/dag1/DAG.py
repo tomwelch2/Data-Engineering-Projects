@@ -47,7 +47,7 @@ def transform_data():
 	schema = "title STRING, price STRING"
 	df = spark.createDataFrame(data, schema = schema)
 	df = df.select('title', sql.regexp_replace(df.price, '£', '').alias('price')) #removing £ symbols
-	df = df.select('title', df.price.cast(FloatType().alias('price'))) #casting price to float datatype
+	df = df.select('title', df.price.cast(FloatType()).alias('price')) #casting price to float datatype
 	df.write.parquet('/home/tom/Documents/csv_files/book_parquet.parquet')
 
 transform_data = PythonOperator(task_id = 'transform_data', python_callable = transform_data, dag = dag)
@@ -66,20 +66,19 @@ def load_data():
                                         driver='com.mysql.jdbc.Driver',
       					dbtable='bookstore_data',
       					user=username,
-      					password=password).mode('overwrite').save()) #saving to MySQL
+      					password=password).mode('overwrite').save() #saving to MySQL
 
 load_data = PythonOperator(task_id = 'load_data', python_callable = load_data, dag = dag)
-remove_temp_json = BashOperator(task_id = 'remove_temp_json', command = """ 
+remove_temp_json = BashOperator(task_id = 'remove_temp_json', bash_command = """ 
 cd /home/tom/Documents/csv_files && rm book_data.txt
 """, dag = dag)
 
-run_r_script = BashOperator(task_id = 'run_r_script', python_callable = run_r_script,
-command = """ 
+run_r_script = BashOperator(task_id = 'run_r_script', bash_command = """ 
 cd /home/tom/Documents/python_files/git_project/AirflowDags/dag1 && Rscript dag_r_script.R
 """, dag = dag)
 
 
-
+create_database >> get_data >> [transform_data, load_data] >> remove_temp_json >> run_r_script
 
 
 
