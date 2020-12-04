@@ -4,3 +4,8 @@
 Pipeline takes data from free API detailing cryptocurrency
 and performs transformations and data-type casting. It is then
 loaded into an AWS S3 bucket after the transformations have been applied.
+<h2>pandas_introduction</h2>
+A Jupyter Notebook that gives a simple beginners guide into using Pandas for data
+transformation and analysis
+
+
