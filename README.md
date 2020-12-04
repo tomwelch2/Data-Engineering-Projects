@@ -8,4 +8,8 @@ loaded into an AWS S3 bucket after the transformations have been applied.
 A Jupyter Notebook that gives a simple beginners guide into using Pandas for data
 transformation and analysis
 
-
+<h1>Flask APIs</h1>
+<h2>flask_api1</h2>
+REST API created with Flask that takes web-scraped data regarding gaming PC mouses 
+from MySQL database and returns it in JSON format. An endpoint for posting data 
+to the API has also been implemented.
