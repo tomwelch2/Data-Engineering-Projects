@@ -19,6 +19,13 @@ dag = DAG('DAG1', schedule_interval = "@daily", start_date = days_ago(1),
 create_database = MySqlOperator(task_id = 'create_database', mysql_conn = "mysql_default",
 sql = "CREATE DATABASE IF NOT EXISTS dag_data;", dag = dag)
 
+#grabbing SQL password from file
+with open('/home/tom/sql_password_json.json', 'r') as f:
+        password = json.load(f)
+
+SQL_PASSWORD = password['password']
+
+
 def get_data(): #scrapes and cleans data from website
 	URL = "http://books.toscrape.com/"
 	request = requests.get(URL)
@@ -59,7 +66,7 @@ def load_data():
 	dbname = "dag_data"
 	jdbcPort = 3306
 	username = "root"
-	password = "Gogos123"
+	password = SQL_PASSWORD
 	jdbc_url = "jdbc:mysql://{0}:{1}/{2}?user={3}&password={4}".format(hostname,jdbcPort, dbname,username,password)
 	df = spark.read.parquet('/home/tom/Documents/csv_files/book_parquet.parquet')
 	df.write.format('jdbc').options(url=jdbc_url,
