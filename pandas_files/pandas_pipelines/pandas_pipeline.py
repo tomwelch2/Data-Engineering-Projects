@@ -46,7 +46,6 @@ aws_access_key_id = data[0]
 aws_access_key_id = aws_access_key_id.strip()
 aws_secret_access_key = data[1]
 aws_secret_access_key = aws_secret_access_key.strip()
-print(aws_access_key_id)
 
 s3 = boto3.client(service_name = "s3", #connecting to S3 bucket
 		  aws_access_key_id = aws_access_key_id,

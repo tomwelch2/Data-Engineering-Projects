@@ -16,7 +16,7 @@ class pcMouseData(Resource):
 
 class postData(Resource):
 	def post(self):
-		parser = reqparse.RequestParser() #parser arguments given in URL to post data
+		parser = reqparse.RequestParser() #parses arguments given in URL to post data
 		parser.add_argument("title", type = str, help = "No 'title' passed")
 		parser.add_argument("price", type = int, help = "No 'price' passed")
 		args = parser.parse_args()
