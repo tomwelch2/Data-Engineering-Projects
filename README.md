@@ -8,6 +8,21 @@ loaded into an AWS S3 bucket after the transformations have been applied.
 A Jupyter Notebook that gives a simple beginners guide into using Pandas for data
 transformation and analysis
 
+<h1>spark_files</h1>
+<h2>pyspark_introduction</h2>
+An introductory Jupyter Notebook that explains the basics of using Pyspark for data
+analysis/transformation. It explains how to load data into the Pyspark application,
+how to specify a schema for the data and perform basic transformations such as column-dropping
+and column creation - as well as aggregation, grouping and storing the data after the transformations
+have occured.
+
+<h2>pyspark_web_scraping</h2>
+A Jupyter Notebook that walks through a web-scraping application which utlises Pyspark for transforming 
+and aggregating the data scraped from Corsair's website detailing RAM products. BeautifulSoup and Requests
+is used to access and scrape the data from the website, where it is then loaded into a Pyspark DataFrame where
+it is cleaned and transformed. Matplotlib is used to create a basic bar-chart displaying each product and its
+corresponding price.
+
 <h1>FlaskApis</h1>
 <h2>flask_api1</h2>
 REST API created with Flask that takes web-scraped data regarding gaming PC mouses 
