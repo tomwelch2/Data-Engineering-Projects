@@ -1,22 +1,22 @@
 ![alt text](https://tdwi.org/articles/2020/03/23/-/media/TDWI/TDWI/BITW/AI17.jpg)
 <h1>pandas_files</h1>
-<h2>Pandas_pipeline1</h2>
+<h2>Pandas_pipeline1.py</h2>
 Pipeline takes data from free API detailing cryptocurrency
 and performs transformations and data-type casting. It is then
 loaded into an AWS S3 bucket after the transformations have been applied.
-<h2>pandas_introduction</h2>
+<h2>pandas_introduction.ipynb</h2>
 A Jupyter Notebook that gives a simple beginners guide into using Pandas for data
 transformation and analysis
 
 <h1>spark_files</h1>
-<h2>pyspark_introduction</h2>
+<h2>pyspark_introduction.ipynb</h2>
 An introductory Jupyter Notebook that explains the basics of using Pyspark for data
 analysis/transformation. It explains how to load data into the Pyspark application,
 how to specify a schema for the data and perform basic transformations such as column-dropping
 and column creation - as well as aggregation, grouping and storing the data after the transformations
 have occured.
 
-<h2>pyspark_web_scraping</h2>
+<h2>pyspark_web_scraping.ipynb</h2>
 A Jupyter Notebook that walks through a web-scraping application which utlises Pyspark for transforming 
 and aggregating the data scraped from Corsair's website detailing RAM products. BeautifulSoup and Requests
 is used to access and scrape the data from the website, where it is then loaded into a Pyspark DataFrame where
@@ -24,7 +24,7 @@ it is cleaned and transformed. Matplotlib is used to create a basic bar-chart di
 corresponding price.
 
 <h1>FlaskApis</h1>
-<h2>flask_api1</h2>
+<h2>flask_api1.py</h2>
 REST API created with Flask that takes web-scraped data regarding gaming PC mouses 
 from MySQL database and returns it in JSON format. An endpoint for posting data 
 to the API has also been implemented.
@@ -62,6 +62,18 @@ columns) - it is then exported as a parquet file for loading.
 
 In the loading stage, the pipeline loads the transformed parquet file and connects to a AWS Athena DB,
 where it is then loaded.
+
+<h1>R_files</h1>
+<h2>r_pipeline.R</h2>
+ETL pipeline written in R which takes data from an AWS S3 bucket and transforms/aggregates it and 
+loads it into a MySQL database.
+
+In the transform stage, columns with Dates stored as Strings are casted to Dates and grouping/aggregation
+is performed.
+
+In the load stage, the data is plotted as a barchart using ggplot and saved locally as a .png file. It is 
+then loaded into a MySQL database using RMariaDB
+
 
 
 
