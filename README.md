@@ -74,7 +74,11 @@ is performed.
 In the load stage, the data is plotted as a barchart using ggplot and saved locally as a .png file. It is 
 then loaded into a MySQL database using RMariaDB
 
-
+<h1>dashDashboards</h1>
+<h2>covid_19.py</h2>
+Dashboard made using Dash and Plotly in python. Connects to free API relating to coronavirus cases around the world
+and returns the data so it can be transformed using Pandas and represented in graph format using Plotly. The user can use
+the dropdown menu to select which continent to filter by.
 
 
 
