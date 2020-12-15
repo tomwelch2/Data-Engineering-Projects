@@ -1,4 +1,7 @@
 ![alt text](https://tdwi.org/articles/2020/03/23/-/media/TDWI/TDWI/BITW/AI17.jpg)
+
+A collection of Data Engineering projects that show how to use languages like Python and R, as well as SQL and NoSQL databases to perform data engineering tasks.
+
 <h1>pandas_files</h1>
 <h2>Pandas_pipeline1.py</h2>
 Pipeline takes data from free API detailing cryptocurrency
