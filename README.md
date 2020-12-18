@@ -1,4 +1,7 @@
 ![alt text](https://tdwi.org/articles/2020/03/23/-/media/TDWI/TDWI/BITW/AI17.jpg)
+
+A collection of Data Engineering projects that show how to use languages like Python and R, as well as SQL and NoSQL databases to perform data engineering tasks.
+
 <h1>pandas_files</h1>
 <h2>Pandas_pipeline1.py</h2>
 Pipeline takes data from free API detailing cryptocurrency
@@ -62,6 +65,25 @@ columns) - it is then exported as a parquet file for loading.
 
 In the loading stage, the pipeline loads the transformed parquet file and connects to a AWS Athena DB,
 where it is then loaded.
+
+<h2>dag4</h2>
+ETL pipeline that takes data from MySQL using JDBC driver and spark, transforms it with spark and loads it into
+an AWS S3 bucket.
+
+In the transform stage, the data is grouped and aggregated - and columns containing dates as strings are casted
+to dates. Unwanted columns are then dropped and the data is exported as a parquet file for storage.
+
+In the load stage, the pipleine connects to an AWS S3 bucket using boto3 and stores the transformmed parquet
+file in the bucket.
+
+<h2>dag5</h2>
+ETL pipeline that takes data from AWS S3 bucket, transforms it using Spark and saves it in a Snowflake database.
+
+In the transform stage, the data is loaded in and unwanted columns are droped, grouping and aggregate functions
+are also applied and their results are saved to a .csv file, with the main data also being exported as a .csv file
+for loading.
+
+In the load stage, the pipeline connects to a Snowflake db and the data is loaded into the database using sqlalchemy and Pandas.
 
 <h1>R_files</h1>
 <h2>r_pipeline.R</h2>
